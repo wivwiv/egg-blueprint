@@ -4,6 +4,10 @@ interface Decorator {
     (target: any, propertyKey: string): void
 }
 
+interface ParamsDecorator {
+    (target: any, propertyKey: string, index: number): void
+}
+
 interface bpItem {
     httpMethod: string
     constructor: Function
@@ -33,7 +37,7 @@ export interface blueprint {
 
     restfulClass(url: string, before?: BeforeFunction): any
 
-    prefix(url:string,controllerName:string):any
+    prefix(url: string, controllerName: string): any
 
     getRoute(): any
 
@@ -42,7 +46,8 @@ export interface blueprint {
 }
 
 interface RouterOptions {
-    prefix: string
+    prefix: string,
+    validator(data: any, schema: string | object): any
 }
 
 interface Initor {
@@ -51,3 +56,6 @@ interface Initor {
 
 export const bp: blueprint
 export const Blueprint: Initor
+export function Query(key?: string | object, schema?: string | object): ParamsDecorator
+export function Body(key?: string | object, schema?: string | object): ParamsDecorator
+export function Params(key?: string | object, schema?: string | object): ParamsDecorator
