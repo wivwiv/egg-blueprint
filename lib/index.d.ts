@@ -47,7 +47,7 @@ export interface blueprint {
 
 interface RouterOptions {
     prefix: string,
-    validator(data: any, schema: string | object): any
+    validator?(data: any, schema: string | object): any
 }
 
 interface Initor {
